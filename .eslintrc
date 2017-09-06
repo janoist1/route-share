@@ -17,6 +17,8 @@
     "__TEST__"     : false,
     "__PROD__"     : false,
     "__COVERAGE__" : false,
+    "GOOGLE_MAP_KEY" : false,
+    "GOOGLE_MAP_URL" : false,
     "google"       : false
   },
   "rules": {

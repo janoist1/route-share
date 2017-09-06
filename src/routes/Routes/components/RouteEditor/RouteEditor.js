@@ -4,9 +4,6 @@ import AsyncMap from '../AsyncMap'
 import FaSpinner from 'react-icons/lib/fa/spinner'
 import './RouteEditor.scss'
 
-const key = 'AIzaSyCqLYkTZRH-u3j9Zc3fPXtbkqfuyLlmWqU'
-const googleMapURL = `https://maps.googleapis.com/maps/api/js?v=3&libraries=places,geometry&key=${key}`
-
 class RouteEditor extends React.Component {
   static propTypes = {
     editing: PropTypes.bool.isRequired,
@@ -87,7 +84,7 @@ class RouteEditor extends React.Component {
         {editing && <input type='text' value={route.name} onChange={this.onNameChange} />}
 
         <AsyncMap
-          googleMapURL={googleMapURL}
+          googleMapURL={`${GOOGLE_MAP_URL}&key=${GOOGLE_MAP_KEY}`}
           loadingElement={
             <div style={{ height: `100%` }}>
               <FaSpinner

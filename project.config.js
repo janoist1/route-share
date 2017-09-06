@@ -20,7 +20,10 @@ module.exports = {
   /** A hash map of keys that the compiler should treat as external to the project */
   externals: {},
   /** A hash map of variables and their values to expose globally */
-  globals: {},
+  globals: {
+    GOOGLE_MAP_KEY: JSON.stringify(process.env.GOOGLE_MAP_KEY || 'AIzaSyCqLYkTZRH-u3j9Zc3fPXtbkqfuyLlmWqU'),
+    GOOGLE_MAP_URL: JSON.stringify(process.env.GOOGLE_MAP_URL || 'https://maps.googleapis.com/maps/api/js?v=3&libraries=places,geometry'), // eslint-disable-line max-len
+  },
   /** Whether to enable verbose logging */
   verbose: false,
   /** The list of modules to bundle separately from the core application code */
