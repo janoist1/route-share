@@ -43,7 +43,7 @@ const config = {
       __DEV__,
       __TEST__,
       __PROD__,
-    }, project.globals))
+    }, project.globals)),
   ],
 }
 
@@ -70,7 +70,7 @@ config.module.rules.push({
         [
           'babel-plugin-transform-object-rest-spread',
           {
-            useBuiltIns: true // we polyfill Object.assign in src/normalize.js
+            useBuiltIns: true, // we polyfill Object.assign in src/normalize.js
           },
         ],
       ],
@@ -83,7 +83,7 @@ config.module.rules.push({
           },
           uglify: true,
         }],
-      ]
+      ],
     },
   }],
 })
@@ -130,9 +130,9 @@ config.module.rules.push({
             inProjectSrc('styles'),
           ],
         },
-      }
+      },
     ],
-  })
+  }),
 })
 config.plugins.push(extractStyles)
 

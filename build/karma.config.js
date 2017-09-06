@@ -16,7 +16,7 @@ const karmaConfig = {
     pattern  : TEST_BUNDLER,
     watched  : false,
     served   : true,
-    included : true
+    included : true,
   }],
   frameworks: ['mocha'],
   reporters: ['mocha'],

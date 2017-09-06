@@ -12,8 +12,8 @@ describe('(Component) Counter', () => {
       counter : 5,
       ...bindActionCreators({
         doubleAsync : (_spies.doubleAsync = sinon.spy()),
-        increment   : (_spies.increment = sinon.spy())
-      }, _spies.dispatch = sinon.spy())
+        increment   : (_spies.increment = sinon.spy()),
+      }, _spies.dispatch = sinon.spy()),
     }
     _wrapper = shallow(<Counter {..._props} />)
   })

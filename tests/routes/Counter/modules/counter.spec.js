@@ -2,7 +2,7 @@ import {
   COUNTER_INCREMENT,
   increment,
   doubleAsync,
-  default as counterReducer
+  default as counterReducer,
 } from 'routes/Counter/modules/counter'
 
 describe('(Redux Module) Counter', () => {
@@ -56,12 +56,12 @@ describe('(Redux Module) Counter', () => {
 
     beforeEach(() => {
       _globalState = {
-        counter : counterReducer(undefined, {})
+        counter : counterReducer(undefined, {}),
       }
       _dispatchSpy = sinon.spy((action) => {
         _globalState = {
           ..._globalState,
-          counter : counterReducer(_globalState.counter, action)
+          counter : counterReducer(_globalState.counter, action),
         }
       })
       _getStateSpy = sinon.spy(() => {
