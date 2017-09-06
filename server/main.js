@@ -5,6 +5,7 @@ const logger = require('../build/lib/logger')
 const webpackConfig = require('../build/webpack.config')
 const project = require('../project.config')
 const compress = require('compression')
+const fallback = require('express-history-api-fallback')
 
 const app = express()
 app.use(compress())
@@ -61,7 +62,10 @@ if (project.env === 'development') {
   // Serving ~/dist by default. Ideally these files should be served by
   // the web server and not the app server, but this helps to demo the
   // server in production.
-  app.use(express.static(path.resolve(project.basePath, project.outDir)))
+  const root = path.resolve(project.basePath, project.outDir)
+
+  app.use(express.static(root))
+  app.use(fallback('index.html', { root }))
 }
 
 module.exports = app
