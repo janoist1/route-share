@@ -3,6 +3,8 @@ const NODE_ENV = process.env.NODE_ENV || 'development'
 module.exports = {
   /** The environment to use when building the project */
   env: NODE_ENV,
+  /** The port number the server is listening on */
+  port: process.env.PORT || 3000,
   /** The full path to the project's root directory */
   basePath: __dirname,
   /** The name of the directory containing the application source code */
