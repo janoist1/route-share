@@ -49,7 +49,13 @@ class RouteEditor extends React.Component {
   }
 
   synchronizeMarkers = directions => {
+    if (!directions) {
+      this.setState({ markers: [] })
+      return
+    }
+
     const { origin, destination, waypoints } = directions.request
+
     let markers = [
       origin.location ? origin.location : origin,
       ...(waypoints.map(waypoint => waypoint.location.location ? waypoint.location.location : waypoint.location)),

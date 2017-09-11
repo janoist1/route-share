@@ -19,25 +19,21 @@ export const consts = {
 export const update = route => ({
   type: UPDATE,
   payload: route,
-  meta: { index: 0 },
 })
 
 export const getDirectionsRequest = waypoints => ({
   type: GET_DIRECTIONS_REQUEST,
   payload: waypoints,
-  meta: { index: 0 },
 })
 
 export const getDirectionsSuccess = directions => ({
   type: GET_DIRECTIONS_SUCCESS,
   payload: directions,
-  meta: { index: 0 },
 })
 
 export const getDirectionsFailure = error => ({
   type: GET_DIRECTIONS_FAILURE,
   payload: error,
-  meta: { index: 0 },
 })
 
 export const actions = {
@@ -65,7 +61,7 @@ const ACTION_HANDLERS = {
 // Reducer
 // ------------------------------------
 export const initialState = {
-  id: 0,
+  id: null,
   name: 'Test',
   directions: null,
 }
