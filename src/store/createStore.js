@@ -4,7 +4,6 @@ import createSagaMiddleware from 'redux-saga'
 import { browserHistory } from 'react-router'
 import makeRootReducer from './reducers'
 import { updateLocation } from './location'
-import routesSaga from '../routes/Routes/sagas'
 
 const createStore = (initialState = {}) => {
   // ======================================================
@@ -44,14 +43,15 @@ const createStore = (initialState = {}) => {
   // To unsubscribe, invoke `store.unsubscribeHistory()` anytime
   store.unsubscribeHistory = browserHistory.listen(updateLocation(store))
 
+  // Allow access to sagas middleware in order to async load them
+  store.sagas = sagaMiddleware
+
   if (module.hot) {
     module.hot.accept('./reducers', () => {
       const reducers = require('./reducers').default
       store.replaceReducer(reducers(store.asyncReducers))
     })
   }
-
-  sagaMiddleware.run(routesSaga) // TODO: refactor, store.sagaMiddleware ?
 
   return store
 }

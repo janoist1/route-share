@@ -11,9 +11,13 @@ export default (store) => ({
        dependencies for bundling   */
       const Routes = require('./containers/RoutesContainer').default
       const reducer = require('./modules/routes').default
+      const sagas = require('./sagas').default
 
       /*  Add the reducer to the store on key 'routes'  */
       injectReducer(store, { key: 'routes', reducer })
+
+      /* Run sagas */
+      Array.isArray(sagas) ? sagas.map(store.sagas.run) : store.sagas.run(sagas)
 
       /*  Return getComponent   */
       cb(null, Routes)
