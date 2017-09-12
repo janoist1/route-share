@@ -1,17 +1,13 @@
 import React from 'react'
-import { IndexLink, Link } from 'react-router'
 import PropTypes from 'prop-types'
+import NavBar from '../../components/NavBar'
 import './PageLayout.scss'
 
 export const PageLayout = ({ children }) => (
-  <div className='container text-center'>
-    <h1>Route Share</h1>
-    <IndexLink to='/' activeClassName='page-layout__nav-item--active'>Home</IndexLink>
-    {' · '}
-    <Link to='/counter' activeClassName='page-layout__nav-item--active'>Counter</Link>
-    {' · '}
-    <Link to='/routes' activeClassName='page-layout__nav-item--active'>Routes</Link>
-    <div className='page-layout__viewport'>
+  <div className='container-element d-flex flex-column'>
+    <NavBar />
+
+    <div className='d-flex align-items-stretch page-layout__viewport'>
       {children}
     </div>
   </div>

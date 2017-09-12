@@ -1,6 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { Button } from 'reactstrap'
 import RouteEditor from '../../components/RouteEditor'
+import './Routes.scss'
 
 class Routes extends React.Component {
   static propTypes = {
@@ -28,6 +30,10 @@ class Routes extends React.Component {
     this.props.onRouteSelect(event.target.value)
   }
 
+  onNameChange = event => {
+    this.props.onUpdate({ name: event.target.value })
+  }
+
   render () {
     const {
       editing,
@@ -38,28 +44,33 @@ class Routes extends React.Component {
       onUpdate,
       onMarkersChange,
     } = this.props
+    const route = routes && routes[activeRouteIndex]
 
     return (
-      <div>
-        <select value={activeRouteIndex} onChange={this.onRouteSelect}>
-          {routes.map((route, index) => (
-            <option
-              key={index}
-              value={index}
-            >
-              {route.name}
-            </option>
-          ))}
-        </select>
+      <div className='routes__container'>
+        <div className='routes__control'>
+          {!editing && <select value={activeRouteIndex} onChange={this.onRouteSelect}>
+            {routes.map((route, index) => (
+              <option
+                key={index}
+                value={index}
+              >
+                {route.name}
+              </option>
+            ))}
+          </select>}
+          {' '}
+          {!editing && <Button size='sm' outline color='success' onClick={this.onNewClick}>new</Button>}
+          {editing && route && <input type='text' value={route.name} onChange={this.onNameChange} />}
+          {' '}
+          <Button size='sm' outline color='danger' onClick={this.onDeleteClick}>delete</Button>
+          {' '}
+          {!editing && <Button size='sm' outline onClick={startEditing}>start editing</Button>}
+          {editing && <Button size='sm' outline onClick={finishEditing}>finish editing</Button>}
+        </div>
 
-        <input type={'button'} value={'new'} onClick={this.onNewClick} />
-        <input type={'button'} value={'delete'} onClick={this.onDeleteClick} />
-
-        {!editing && <button onClick={startEditing}>start editing</button>}
-        {editing && <button onClick={finishEditing}>finish editing</button>}
-
-        {routes && routes[activeRouteIndex] && <RouteEditor
-          route={routes[activeRouteIndex]}
+        {route && <RouteEditor
+          route={route}
           editing={editing}
           onUpdate={onUpdate}
           onMarkersChange={onMarkersChange}

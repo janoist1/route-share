@@ -39,10 +39,6 @@ class RouteEditor extends React.Component {
     })
   }
 
-  onNameChange = event => {
-    this.props.onUpdate({ name: event.target.value })
-  }
-
   onDirectionsChange = directions => {
     this.synchronizeMarkers(directions)
     this.props.onUpdate({ directions })
@@ -87,8 +83,6 @@ class RouteEditor extends React.Component {
 
     return (
       <div className='route-editor'>
-        {editing && <input type='text' value={route.name} onChange={this.onNameChange} />}
-
         <AsyncMap
           googleMapURL={`${GOOGLE_MAP_URL}&key=${GOOGLE_MAP_KEY}`}
           loadingElement={
