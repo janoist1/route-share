@@ -39,12 +39,13 @@ const createStore = (initialState = {}) => {
     )
   )
   store.asyncReducers = {}
+  store.asyncSagas = {}
 
   // To unsubscribe, invoke `store.unsubscribeHistory()` anytime
   store.unsubscribeHistory = browserHistory.listen(updateLocation(store))
 
-  // Allow access to sagas middleware in order to async load them
-  store.sagas = sagaMiddleware
+  // Allow access to saga middleware's run() in order to async load them
+  store.runSaga = sagaMiddleware.run
 
   if (module.hot) {
     module.hot.accept('./reducers', () => {

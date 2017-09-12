@@ -1,4 +1,5 @@
 import { injectReducer } from '../../store/reducers'
+import injectSaga from '../../store/injectSaga'
 
 export default (store) => ({
   path : 'routes',
@@ -17,7 +18,7 @@ export default (store) => ({
       injectReducer(store, { key: 'routes', reducer })
 
       /* Run sagas */
-      Array.isArray(sagas) ? sagas.map(store.sagas.run) : store.sagas.run(sagas)
+      sagas.map((saga, index) => injectSaga(store, { key: `routes_${index}`, saga }))
 
       /*  Return getComponent   */
       cb(null, Routes)
